@@ -5,7 +5,9 @@ Grocery list, department service
 
 `gradlew build`
 
-`docker build . --build-arg version=0.0.1-SNAPSHOT -t gl-dept:latest`
+`docker build . --build-arg version=0.0.1-SNAPSHOT -t zmad5306/gl-dept:latest`
+
+`docker push zmad5306/gl-dept:latest`
 
 ## Deploy with Kubernetes
 
