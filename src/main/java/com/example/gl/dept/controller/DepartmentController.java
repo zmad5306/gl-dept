@@ -1,6 +1,11 @@
 package com.example.gl.dept.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalLong;
+import java.util.stream.Collectors;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,17 +17,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.gl.dept.model.Department;
+import com.example.gl.dept.model.GenericApiResponse;
 
 @RestController
 public class DepartmentController {
+	
+	private List<Department> departments;
+	
+	Long getNextId() {
+		OptionalLong  max = this.departments.stream().map(d -> d.getId()).mapToLong(Long::longValue).max();
+		return max.getAsLong() + 1L;
+	}
+	
+	@PostConstruct
+	public void init() {
+		this.departments = new ArrayList<>();
+		
+		Department dept1 = new Department(1L, "Frozen");
+		Department dept2 = new Department(2L, "Meat");
+		Department dept3 = new Department(3L, "Dairy");
+		
+		this.departments.add(dept1);
+		this.departments.add(dept2);
+		this.departments.add(dept3);
+	}
 	
 	@RequestMapping(
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			value="/"
 		)
-	public ResponseEntity<List<Department>> getDepartments() {
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	public List<Department> getDepartments() {
+		return this.departments;
 	}
 	
 	@RequestMapping(
@@ -30,8 +56,13 @@ public class DepartmentController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			value="/{departmentId}"
 		)
-	public ResponseEntity<Department> getDepartment(@PathVariable Long departmentId) {
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	public Department getDepartment(@PathVariable Long departmentId) {
+		List<Department> filtered = this.departments.stream().filter(d -> d.getId() == departmentId).collect(Collectors.toList());
+		if (filtered.size() > 0) {
+			return filtered.get(0);
+		} else {
+			return null;
+		}
 	}
 	
 	@RequestMapping(
@@ -39,8 +70,10 @@ public class DepartmentController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			value="/"
 		)
-	public ResponseEntity<?> saveDepartment(@RequestBody Department department) {
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	public GenericApiResponse saveDepartment(@RequestBody Department department) {
+		department.setId(getNextId());
+		this.departments.add(department);
+		return new GenericApiResponse();
 	}
 	
 	@RequestMapping(
@@ -48,8 +81,15 @@ public class DepartmentController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			value="/{departmentId}"
 		)
-	public ResponseEntity<?> updateDepartment(@PathVariable Long departmentId, @RequestBody Department department) {
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<GenericApiResponse> updateDepartment(@PathVariable Long departmentId, @RequestBody Department department) {
+		Department existingDepartment = getDepartment(departmentId);
+		if (null != existingDepartment) {
+			this.departments.remove(existingDepartment);
+			this.departments.add(department);
+			return new ResponseEntity<>(new GenericApiResponse(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(new GenericApiResponse(false, "dept_0001", "departhemt not found"), HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@RequestMapping(
@@ -57,8 +97,14 @@ public class DepartmentController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			value="/{departmentId}"
 		)
-	public ResponseEntity<?> deleteDepartment(@PathVariable Long departmentId) {
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<GenericApiResponse> deleteDepartment(@PathVariable Long departmentId) {
+		Department existingDepartment = getDepartment(departmentId);
+		if (null != existingDepartment) {
+			this.departments.remove(existingDepartment);
+			return new ResponseEntity<>(new GenericApiResponse(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(new GenericApiResponse(false, "dept_0001", "departhemt not found"), HttpStatus.NOT_FOUND);
+		}
 	}
 
 }
