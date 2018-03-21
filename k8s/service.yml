@@ -4,10 +4,10 @@ metadata:
   name: gl-dept-service
   labels:
     app: gl-dept
-  spec:
-    type: ClusterIp
-    ports:
-    - port: 8080
-      protocol: TCP
-    selector:
-      app: gl-dept
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    app: gl-dept
