@@ -2,23 +2,23 @@ package com.example.gl.dept.model;
 
 public class Department {
 	
-	private Long id;
+	private Long departmentId;
 	private String name;
 	
 	public Department() {
 		super();
 	}
-	public Department(Long id, String name) {
+	public Department(Long departmentId, String name) {
 		super();
-		this.id = id;
+		this.departmentId = departmentId;
 		this.name = name;
 	}
-	
-	public Long getId() {
-		return id;
+
+	public Long getDepartmentId() {
+		return departmentId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
 	}
 	public String getName() {
 		return name;
