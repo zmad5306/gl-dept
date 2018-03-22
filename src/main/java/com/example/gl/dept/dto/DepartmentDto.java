@@ -8,6 +8,10 @@ public class DepartmentDto extends ResourceSupport {
 	
 	private Long departmentId;
 	private String name;
+	
+	public DepartmentDto() {
+		super();
+	}
 
 	public DepartmentDto(Department department) {
 		super();
