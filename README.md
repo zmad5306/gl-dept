@@ -21,6 +21,3 @@ Grocery list, department service
 | ------------------------ | ------ | --------------------------------|
 | /api/dept/               |GET     | Gets all departments            |
 | /api/dept/{departmentId} |GET     | Gets a single department by id  |
-| /api/dept/               |POST    | Adds a new department           |
-| /api/dept/{departmentId} |PUT     | Updates a department            |
-| /api/dept/{departmentId} |DELETE  | Deletes a department            |
