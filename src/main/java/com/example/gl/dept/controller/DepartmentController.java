@@ -42,7 +42,7 @@ public class DepartmentController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			value="/{departmentId}"
 		)
-	public ResponseEntity<DepartmentDto> getDepartment(@PathVariable Long departmentId) {
+	public ResponseEntity<DepartmentDto> getDepartment(@PathVariable String departmentId) {
 		DepartmentDto dept = this.service.getDepartment(departmentId);
 		if (null == dept) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);	
