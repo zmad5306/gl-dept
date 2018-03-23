@@ -2,3 +2,7 @@ server:
   port: 8080
   servlet:
     contextPath: /dept
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongo-0.mongo:27017/dept
