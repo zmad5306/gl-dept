@@ -1,23 +1,25 @@
 package com.example.gl.dept.model;
 
+import org.springframework.data.annotation.Id;
+
 public class Department {
 	
-	private Long departmentId;
+	@Id
+	private String departmentId;
 	private String name;
 	
 	public Department() {
 		super();
 	}
-	public Department(Long departmentId, String name) {
+	public Department(String name) {
 		super();
-		this.departmentId = departmentId;
 		this.name = name;
 	}
 
-	public Long getDepartmentId() {
+	public String getDepartmentId() {
 		return departmentId;
 	}
-	public void setDepartmentId(Long departmentId) {
+	public void setDepartmentId(String departmentId) {
 		this.departmentId = departmentId;
 	}
 	public String getName() {

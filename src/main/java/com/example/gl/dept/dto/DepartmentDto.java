@@ -6,7 +6,7 @@ import com.example.gl.dept.model.Department;
 
 public class DepartmentDto extends ResourceSupport {
 	
-	private Long departmentId;
+	private String departmentId;
 	private String name;
 	
 	public DepartmentDto() {
@@ -21,10 +21,10 @@ public class DepartmentDto extends ResourceSupport {
 		}
 	}
 	
-	public Long getDepartmentId() {
+	public String getDepartmentId() {
 		return departmentId;
 	}
-	public void setDepartmentId(Long departmentId) {
+	public void setDepartmentId(String departmentId) {
 		this.departmentId = departmentId;
 	}
 	public String getName() {
