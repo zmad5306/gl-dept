@@ -10,7 +10,9 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import com.example.gl.dept.dto.DepartmentDto;
 import com.example.gl.dept.model.Department;
@@ -19,7 +21,8 @@ import com.example.gl.dept.repository.DepartmentRepository;
 @Service
 public class DepartmentService {
 	
-	private String[] defaultDeptNames = {"Frozen", "Dairy", "Bread", "Canned"};
+	@Value("${default-dept-names}")
+	private String defaultDeptNames;
 	private final Logger logger = LoggerFactory.getLogger(DepartmentService.class);
 	
 	@Autowired
@@ -27,8 +30,9 @@ public class DepartmentService {
 	
 	@PostConstruct
 	public void init() {
+		Assert.notNull(defaultDeptNames, "defaultDeptNames must be provided in dept-config configmap");
 		List<String> deptNames = repo.findAll().stream().map(dept -> dept.getName()).collect(Collectors.toList());
-		Arrays.asList(defaultDeptNames).stream().filter(deptName -> !deptNames.contains(deptName)).forEach(deptName -> {
+		Arrays.asList(defaultDeptNames.split(",")).stream().filter(deptName -> !deptNames.contains(deptName)).forEach(deptName -> {
 			logger.info("Creating dept: " + deptName);
 			Department dept = new Department(deptName);
 			repo.insert(dept);
