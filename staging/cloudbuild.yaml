@@ -9,7 +9,7 @@ steps:
     args:
       - '-c'
       - |
-        gsutil cp gs://${PROJECT_ID}-gl-dept-configs/hub.enc hub.enc
+        gsutil cp gs://${PROJECT_ID}-git-hub-key/hub.enc hub.enc
 
         gcloud kms decrypt \
           --ciphertext-file hub.enc \
