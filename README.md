@@ -9,7 +9,7 @@ Grocery list, department service
 
 ## Circle CI Build
 
-https://circleci.com/gh/zmad5306/gl-dept
+https://circleci.com/gh/zmad5306/gl-dept (this is no longer relevant)
 
 # API
 
