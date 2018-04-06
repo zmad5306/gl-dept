@@ -35,10 +35,6 @@ Grocery list, department service
 
 `docker push zmad5306/gl-dept:latest`
 
-## Circle CI Build
-
-https://circleci.com/gh/zmad5306/gl-dept (this is no longer relevant)
-
 # API
 
 | URL                      | Method | Description                     |
