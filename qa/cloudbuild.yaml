@@ -111,7 +111,7 @@ steps:
       - |
         # Extract the container image from the qa dept deployment configuration file.
         CONTAINER_IMAGE=$(kubectl apply --dry-run \
-           -f kubernetes/deployments/gl-dept-deployemnt.yaml \
+           -f kubernetes/deployments/gl-dept-deployment.yaml \
            -o jsonpath='{.spec.template.spec.containers[?(@.name == "gl-dept")].image}')
 
         ACTIVE_ACCOUNT=$(gcloud auth list --filter=status:ACTIVE --format="value(account)")
