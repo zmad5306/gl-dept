@@ -136,11 +136,11 @@ steps:
         EOF
 
         kubectl patch --local -o yaml \
-          -f gl-infrastructure-production/kubernetes/deployments/gl-dept-deployemnt.yaml \
+          -f gl-infrastructure-production/kubernetes/deployments/gl-dept-deployment.yaml \
           -p "$(cat patch.yaml)" \
-          > gl-dept-deployemnt.yaml
+          > gl-dept-deployment.yaml
 
-        mv gl-dept-deployemnt.yaml gl-infrastructure-production/kubernetes/deployments/gl-dept-deployemnt.yaml
+        mv gl-dept-deployment.yaml gl-infrastructure-production/kubernetes/deployments/gl-dept-deployment.yaml
 
         # Change to the gl-infrastructure-production directory
         # commit the local changes, then issue a pull request.
@@ -148,12 +148,12 @@ steps:
 
         git checkout -b update-deployment-${BUILD_ID}
 
-        hub add kubernetes/deployments/gl-dept-deployemnt.yaml
+        hub add kubernetes/deployments/gl-dept-deployment.yaml
  
         hub commit -F- <<EOF
-        Update the gl-dept-deployemnt deployment
+        Update the gl-dept-deployment deployment
 
-        This commit updates the gl-dept-deployemnt container image to:
+        This commit updates the gl-dept-deployment container image to:
 
             $${CONTAINER_IMAGE}
 
