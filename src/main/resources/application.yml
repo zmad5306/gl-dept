@@ -1,4 +1,8 @@
 server:
   port: 8080
   servlet:
-    contextPath: /api/dept
+    contextPath: /dept
+spring:
+  data:
+    mongodb:
+      uri: ${mongo-db-uri}
