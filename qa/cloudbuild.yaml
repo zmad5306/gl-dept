@@ -118,7 +118,7 @@ steps:
         
         # Clone the ${_GITHUB_USERNAME}/gl-infrastructure-staging repo
         # and patch the gl-dept deployment container image.
-        hub clone "https://github.com/${_GITHUB_USERNAME}/gl-infrastructure-qa.git"
+        hub clone "https://github.com/zmad5306/gl-infrastructure-qa.git"
 
         # Clone the ${_GITHUB_USERNAME}/gl-infrastructure-production repo
         # and patch the gl-dept deployment container image.
