@@ -22,3 +22,5 @@ Grocery list, department service
 | /api/dept/               |POST    | Adds a new department           |
 | /api/dept/{departmentId} |PUT     | Updates a department            |
 | /api/dept/{departmentId} |DELETE  | Deletes a department            |
+
+test
