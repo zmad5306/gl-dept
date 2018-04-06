@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # gl-dept
 Grocery list, department service
 
@@ -34,10 +33,6 @@ Grocery list, department service
 `docker build . --build-arg version=0.0.1-SNAPSHOT -t zmad5306/gl-dept:latest`
 
 `docker push zmad5306/gl-dept:latest`
-
-## Circle CI Build
-
-https://circleci.com/gh/zmad5306/gl-dept (this is no longer relevant)
 
 # API
 
