@@ -118,7 +118,7 @@ steps:
         
         # Clone the ${_GITHUB_USERNAME}/gl-infrastructure-staging repo
         # and patch the gl-dept deployment container image.
-        hub clone "https://github.com/${_GITHUB_USERNAME}/gl-infrastructure-qa.git"
+        hub clone "https://github.com/zmad5306/gl-infrastructure-qa.git"
 
         # Clone the ${_GITHUB_USERNAME}/gl-infrastructure-production repo
         # and patch the gl-dept deployment container image.
@@ -151,7 +151,7 @@ steps:
 
         git checkout -b update-deployment-${BUILD_ID}
 
-        hub add gl-infrastructure-production/kubernetes/deployments/gl-dept-deployment.yaml
+        hub add kubernetes/deployments/gl-dept-deployment.yaml
  
         hub commit -F- <<EOF
         Update the gl-dept-deployment deployment
